@@ -1,0 +1,319 @@
+body.home {
+    .header-headline {
+        background-image: url(@assets_dist_img_misc_banner_1_jpg);
+
+        h2 {
+            .titillium('light');
+            background: fadeout(black, 60%);
+            color: white;
+            display: block;
+            font-size: percentage((48/14));
+            text-align: center;
+            text-shadow: 0px 0px 2px fadeout(black, 70%);
+            text-transform: none;
+        }
+
+        br {
+            display: none;
+        }
+
+        .tagline {
+            color: white;
+            font-size: percentage((18/14));
+            margin-bottom: 0;
+            text-align: center;
+            text-transform: none;
+        }
+
+        .get-started {
+            .open-sans('bold');
+            .button('smoke');
+            font-size: 12px;
+            letter-spacing: 0.04em;
+            margin-top: 2em;
+            text-transform: uppercase;
+        }
+
+        @media (min-width: 769px) {
+            padding: 180px 60px 120px 35px;
+
+            h2 {
+                background: transparent;
+            }
+
+            br {
+                display: block;
+            }
+
+        }
+    }
+
+    .box {
+        text-align: center;
+        padding: 80px 0;
+
+        .container {
+            .centered-container(960px);
+        }
+    }
+
+
+    .box.carina-signup {
+      background: #f0f5fc;
+
+      h2 {
+        .open-sans('light');
+      }
+
+      form {
+        text-align: left;
+      }
+
+      .control.email, .control.password {
+        .grid-unit(1/1, 0px);
+      }
+
+      .control.submit {
+        .grid-unit(1/1, 0px);
+      }
+
+      .control {
+        &.error {
+          input[type="email"],
+          input[type="password"] {
+            border: solid 1px @theme-red;
+            color: shade(@theme-red, 20%);
+
+            &:focus {
+              color: @text-color;
+            }
+          }
+
+          .control-validation {
+            color: shade(@theme-red, 20%);
+            margin-top: 7px;
+          }
+        }
+
+        & + .control {
+          margin-top: 14px;
+        }
+      }
+
+      input[type="email"],
+      input[type="password"] {
+        .open-sans();
+        background: white;
+        border: solid 1px @text-color;
+        display: block;
+        font-size: 14px;
+        padding: 0.9em 1em;
+        .transition(border 0.1s ease-in-out);
+        width: 100%;
+
+        &:focus {
+          outline: none;
+          border: solid 1px @theme-teal;
+        }
+      }
+
+      button[type="submit"] {
+        .open-sans();
+        .button();
+        background: @theme-teal;
+        border: solid 1px shade(@theme-teal, 5%);
+        color: white;
+        cursor: pointer;
+        font-size: 14px;
+        padding: 0.9em 2.5em;
+        .transition(~"background 0.1s ease-in-out, border 0.1s ease-in-out");
+        width: 100%;
+
+        &:hover, &:focus {
+          outline: none;
+          background: shade(@theme-teal, 5%);
+          border: solid 1px shade(@theme-teal, 25%);
+        }
+
+        &[disabled] {
+          background: tint(@theme-teal, 35%);
+          border: solid 1px tint(@theme-teal, 35%);
+
+          &:hover, &:focus {
+            background: tint(@theme-teal, 35%);
+            border: solid 1px tint(@theme-teal, 35%);
+          }
+        }
+
+        @media (min-width: 480px) {
+          width: auto;
+        }
+      }
+
+      .form-submitted {
+        background: @theme-teal;
+        color: white;
+        padding: 20px;
+      }
+
+      @media (min-width: 768px) {
+
+        .control + .control {
+          margin-top: 0;
+        }
+
+        form {
+          .grid(18px);
+          margin-left: auto;
+          margin-right: auto;
+
+          .control.email, .control.password {
+            .grid-unit(4/10, 18px);
+            margin-top: 0;
+          }
+
+          .control.submit {
+            .grid-unit(2/10, 18px);
+            margin-top: 0;
+          }
+        }
+      }
+    }
+
+    .box.docs-apis {
+
+        h1 {
+            margin-bottom: 80px;
+        }
+
+        .tools-promos {
+            .grid(20px);
+
+            .promo {
+                .grid-unit(1/1, 20px);
+            }
+
+            @media (min-width: 769px) {
+                .grid(80px);
+
+                .promo {
+                    .grid-unit(1/2, 80px);
+                }
+            }
+        }
+    }
+
+    .box.dev-support {
+        background: @text-color;
+        color: white;
+
+        h2 {
+            font-size: percentage((36/14));
+        }
+
+        h2 + p {
+            font-size: percentage((20/14));
+            margin-bottom: 80px;
+        }
+
+        .icon {
+            font-size: 60px;
+            margin-bottom: 5px;
+        }
+
+        .comm-platforms {
+            .grid(20px);
+
+            .platform {
+                .grid-unit(1/2, 20px);
+                font-size: percentage((16/14));
+            }
+
+            @media (min-width: 769px) {
+                .grid(40px);
+
+                .platform {
+                    .grid-unit(1/4, 40px);
+                }
+            }
+        }
+    }
+
+    .box.carina-quote {
+        background: shade(white, 5%) url(@assets_dist_img_quote_background_jpg) 50% 50% no-repeat;
+        background-size: cover;
+
+        h2 {
+          font-size: percentage((36/14));
+        }
+
+        h2 + p {
+          font-size: percentage((20/14));
+          margin-bottom: 40px;
+        }
+
+        blockquote {
+          font-size: percentage((18/14));
+          line-height: 1.45;
+          margin-bottom: 10px;
+
+            .quotes {
+              font-family: Georgia, serif;
+            }
+        }
+
+        .author {
+          .open-sans('regular','italic');
+          font-size: percentage((18/14));
+          margin-bottom: 40px;
+        }
+
+        a {
+          .button('blue');
+        }
+
+        @media (min-width: 850px) {
+          blockquote {
+            font-size: percentage((28/14));
+          }
+        }
+
+        @media (min-width: 1067px) {
+          background-size: contain;
+        }
+    }
+
+    .box.sign-up {
+        border-bottom: solid 1px shade(white, 5%);
+
+        a.sign-up {
+            .button('blue');
+        }
+    }
+
+    .box.blog {
+        .link-lists {
+            .grid(40px);
+
+            .link-list {
+                .grid-unit(1/1, 40px);
+                text-align: left;
+            }
+
+            @media (min-width: 550px) {
+                .link-list {
+                    .grid-unit(1/2, 40px);
+                }
+            }
+        }
+
+        h4 {
+            font-size: percentage((28/14));
+            margin-bottom: 20px;
+        }
+
+        ul {
+            margin-bottom: 30px;
+        }
+    }
+}

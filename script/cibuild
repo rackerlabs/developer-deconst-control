@@ -1,0 +1,34 @@
+#!/bin/bash
+#
+# Used by Travis to submit named assets to the correct environments.
+
+set -euo pipefail
+
+PUBLISH="false"
+
+if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
+  case ${TRAVIS_BRANCH} in
+    master)
+      echo "Submitting to production."
+      export CONTENT_STORE_URL=https://developer.rackspace.com:9000/
+      export CONTENT_STORE_APIKEY=${PROD1}${PROD2}${PROD3}
+      export PUBLISH="true"
+      ;;
+    staging)
+      echo "Submitting to staging."
+      export CONTENT_STORE_URL=http://staging.developer.rackspace.com:8000/
+      export CONTENT_STORE_APIKEY=${STAGE1}${STAGE2}${STAGE3}
+      export PUBLISH="true"
+      ;;
+    *)
+      echo "Not submitting ${TRAVIS_BRANCH} anywhere."
+      ;;
+  esac
+else
+  echo "Not submitting pull request build anywhere."
+fi
+
+if [ "${PUBLISH}" = "true" ]; then
+  npm install
+  grunt build
+fi

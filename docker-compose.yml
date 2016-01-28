@@ -1,0 +1,52 @@
+---
+mongo:
+  image: mongo:2.6
+content:
+  image: quay.io/deconst/content-service
+  links:
+  - "mongo:mongo"
+  environment:
+    RACKSPACE_USERNAME:
+    RACKSPACE_APIKEY:
+    RACKSPACE_REGION: DFW
+    ADMIN_APIKEY: "12345"
+    CONTENT_CONTAINER: deconst-drc-content
+    ASSET_CONTAINER: deconst-drc-assets
+    MONGODB_URL: mongodb://mongo:27017/content
+    CONTENT_LOG_LEVEL: DEBUG
+  ports:
+  - "9000:8080"
+mapping:
+  image: quay.io/deconst/mapping-service
+  environment:
+    CONTROL_REPO_URL: /data/control-repo
+    MAP_LOG_LEVEL: DEBUG
+  ports:
+  - "9001:8080"
+  volumes:
+  - .:/data/control-repo:ro
+layout:
+  image: quay.io/deconst/layout-service
+  environment:
+    CONTROL_REPO_URL: /data/control-repo
+    LAYOUT_LOG_LEVEL: DEBUG
+  ports:
+  - "9002:8080"
+  volumes:
+  - .:/data/control-repo:ro
+presenter:
+  image: quay.io/deconst/presenter
+  links:
+  - content
+  - mapping
+  - layout
+  environment:
+    CONTENT_SERVICE_URL: http://content:8080/
+    MAPPING_SERVICE_URL: http://mapping:8080/
+    LAYOUT_SERVICE_URL: http://layout:8080/
+    PRESENTED_URL_DOMAIN: developer.rackspace.com
+    PUBLIC_URL_DOMAIN: docker
+    PUBLIC_URL_PROTO: http
+    PRESENTER_LOG_LEVEL: DEBUG
+  ports:
+  - "80:8080"

@@ -1,6 +1,6 @@
 {
     "routes": {
-        "^/": "default.html"
+        "^/": "default.html",
         "^/$": "index.html",
         "^/signup": "index.html",
         "^/databases": "databases-index.html",
